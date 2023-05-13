@@ -24,4 +24,32 @@
         </table>
     </div>
   </div>
+
+<div class="card add-user">
+  <h5 class="card-header">Adicionar/Atualizar usuarios</h5>
+  <div class="card-body">
+      <form id="add-form" (ngSubmit)="f.form.valid && saveUser(f)" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" [(ngModel)]="user.name" id="name" name="name" #name="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Digite o nome">
+            <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" [(ngModel)]="user.email" id="email" name="email" #email="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Digite o email">
+            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price">Telefone</label>
+            <input type="phone" [(ngModel)]="user.phone" id="phone" name="phone" #phone="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" placeholder="Digite o telefone">
+            <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-add-user">Salvar</button>
+        <button type="reset" class="btn btn-secondary btn-add-user" (click)="cleanForm(f)">Cancelar</button>
+      </form>
+  </div>
+</div>
 </div>

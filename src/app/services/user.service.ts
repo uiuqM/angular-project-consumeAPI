@@ -12,10 +12,30 @@ export class UserService {
   
   constructor(private httpClient: HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
+
   getUsers(): Observable<User[]>{
     return this.httpClient.get<User[]>(this.url)
       .pipe(retry(2), 
         catchError(this.handleError))
+  }
+  
+  getUserById(id: number): Observable<User>{
+    return this.httpClient.get<User>(this.url + '/' + id).pipe(retry(2), catchError(this.handleError))
+  }
+
+  saveUser(user: User): Observable<User>{
+    return this.httpClient.post<User>(this.url, JSON.stringify(user), this.httpOptions).pipe(retry(2), catchError(this.handleError))
+  }
+
+  updateUser(user: User): Observable<User>{
+    return this.httpClient.put<User>(this.url + '/' + user.id, JSON.stringify(user), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   handleError(error: HttpErrorResponse){
