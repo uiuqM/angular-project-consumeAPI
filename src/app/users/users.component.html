@@ -1,0 +1,62 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Lista de Usuarios ativos</li>
+    </ol>
+  </nav>
+  <div class="container">
+    <div class="card list-user">
+      <h5 class="card-header">Lista de usuarios</h5>
+      <div class="card-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">email</th>
+                <th scope="col">phone</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  
+  <div class="card add-user">
+    <h5 class="card-header">Adicionar/Atualizar usuarios</h5>
+    <div class="card-body">
+        <form id="add-form" (ngSubmit)="f.form.valid && saveUser(f)" #f="ngForm" novalidate>
+          <div class="form-group">
+              <label for="name">Nome</label>
+              <input type="text" [(ngModel)]="user.name" id="name" name="name" #name="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Digite o nome">
+              <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" [(ngModel)]="user.email" id="email" name="email" #email="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Digite o email">
+              <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="price">Telefone</label>
+              <input type="phone" [(ngModel)]="user.phone" id="phone" name="phone" #phone="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" placeholder="Digite o telefone">
+              <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="price">Senha</label>
+            <input type="password" [(ngModel)]="user.password" id="password" name="password" #password="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" placeholder="Digite a senha">
+            <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+            </div>
+        </div>
+          <button type="submit" class="btn btn-primary btn-add-user">Salvar</button>
+          <button type="reset" class="btn btn-secondary btn-add-user" (click)="cleanForm(f)">Cancelar</button>
+        </form>
+    </div>
+  </div>
+  </div>
+  
