@@ -1,26 +1,26 @@
   <div class="container">
     <div class="row">
-      <div class="col s12 m7">
         <tr *ngFor="let product of products">
+          <div class="col s18 m12">
         <div class="card sticky-action">
           <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src={{product.imgUrl}} width="200" height="300">
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">{{product.name}}<i class="material-icons right">more_vert</i></span>
-            <p class="preco">{{product.price}}</p>
+            <p class="preco">R$ {{product.price}}</p>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{product.name}}<i class="material-icons right">close</i></span>
             <p>{{product.description}}</p>
           </div>
           <div class="card-action">
-            <a class="waves-effect waves-teal btn">EDITAR</a>
-          <a class="waves-effect waves-teal btn red">EXCLUIR</a>
+            <button class="waves-effect waves-teal btn" (click)="Openpopup()">EDITAR</button>
+            <button class="waves-effect waves-teal btn red">EXCLUIR</button>
           </div>
         </div>
-      </tr>
       </div>
+      </tr>
     </div>
   
   <div class="card add-product">
@@ -45,6 +45,12 @@
               <div *ngIf="f.submitted && price.invalid" class="invalid-feedback">
               </div>
           </div>
+          <div class="form-group">
+            <label for="link">URL</label>
+            <input type="link" [(ngModel)]="product.imgUrl" id="imgUrl" name="imgUrl" #imgUrl="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && imgUrl.invalid }" placeholder="Insira o link de uma imagem">
+            <div *ngIf="f.submitted && imgUrl.invalid" class="invalid-feedback">
+            </div>
+        </div>
           <button type="submit" class="btn btn-primary btn-add-product">Salvar</button>
           <button type="reset" class="btn btn-secondary btn-add-product" (click)="cleanForm(f)">Cancelar</button>
         </form>

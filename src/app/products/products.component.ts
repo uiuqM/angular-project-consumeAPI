@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { NgForm } from '@angular/forms';
 import { Product } from '../models/product';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,8 @@ export class ProductsComponent{
   product = {} as Product;
   products: Product[] = [];
 
-  constructor(private productservice: ProductService) {}
+  constructor(private productservice: ProductService,
+    private dialog: MatDialog) {}
 
   ngOnInit(){
       this.getProducts();
@@ -41,6 +44,16 @@ export class ProductsComponent{
     this.getProducts();
     form.resetForm();
     this.product = {} as Product;
+  }
+
+  Openpopup(){
+    
+    const dialogConfig = new MatDialogConfig;
+
+    dialogConfig.width = '60%';
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(PopupComponent, dialogConfig);
   }
 
   title = 'angular-http';
