@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Product } from '../models/product';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
+import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,7 @@ export class ProductsComponent{
 
   saveProduct(form: NgForm){
     if (this.product.id !== undefined){
-      this.productservice.updateUser(this.product).subscribe(() =>{
+      this.productservice.updateProduct(this.product).subscribe(() =>{
         this.cleanForm(form);
       })
     } else{
@@ -46,15 +47,21 @@ export class ProductsComponent{
     this.product = {} as Product;
   }
 
-  Openpopup(){
-    
-    const dialogConfig = new MatDialogConfig;
+  onRemove(product: Product) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Deseja remover esse produto?'
+    });
 
-    dialogConfig.width = '60%';
-    dialogConfig.autoFocus = true;
-
-    this.dialog.open(PopupComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if(result){
+      this.productservice.deleteProduct(product).subscribe(() => {
+        this.getProducts();
+      });
+    }
+    });
+  } 
+  editProduct(product: Product) {
+    this.product = { ...product };
   }
-
-  title = 'angular-http';
 }

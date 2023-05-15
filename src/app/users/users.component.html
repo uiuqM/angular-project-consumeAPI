@@ -1,6 +1,6 @@
   <div class="container">
     <div class="card list-user">
-      <h5 class="card-header">Lista de usuarios</h5>
+      <h2 class="card-header">Lista de usuarios</h2>
       <div class="card-body">
         <table class="table">
             <thead>
@@ -8,12 +8,17 @@
                 <th scope="col">Nome</th>
                 <th scope="col">email</th>
                 <th scope="col">phone</th>
+                <th scope="col">Interações</th>
             </thead>
             <tbody>
               <tr *ngFor="let user of users">
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.phone}}</td>
+                <td>
+                  <button type="button" class="waves-effect waves-teal btn yellow" (click)="editUser(user)">Editar</button>
+                  <button type="button" class="waves-effect waves-teal btn red" (click)="onRemove(user)">Deletar</button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -21,7 +26,7 @@
     </div>
   
   <div class="card add-user">
-    <h5 class="card-header">Adicionar/Atualizar usuarios</h5>
+    <h2 class="card-header">Adicionar/Atualizar usuarios</h2>
     <div class="card-body">
         <form id="add-form" (ngSubmit)="f.form.valid && saveUser(f)" #f="ngForm" novalidate>
           <div class="form-group">

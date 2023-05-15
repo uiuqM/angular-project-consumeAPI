@@ -1,6 +1,11 @@
 FROM node:18 AS angular
-WORKDIR .
+WORKDIR /app
+COPY package.json /app
+RUN npm install --silent
 COPY . .
-RUN npm install; npm install -g @angular/cli
-EXPOSE 4200
-ENTRYPOINT ng serve --proxy-config proxy.conf.js
+RUN npm run build
+
+FROM nginx:alpine
+VOLUME /var/cache/nginx
+COPY --from=angular app/dist/angular-http /usr/share/nginx/html
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf

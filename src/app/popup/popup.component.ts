@@ -7,6 +7,7 @@ import { MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.css']
 })
+
 export class PopupComponent {
   constructor (private ref:MatDialogRef<PopupComponent>) {}
 

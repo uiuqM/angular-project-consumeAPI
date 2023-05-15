@@ -30,7 +30,15 @@ export class ProductService {
     return this.httpClient.post<Product>(this.url, JSON.stringify(product), this.httpOptions).pipe(retry(2), catchError(this.handleError))
   }
 
-  updateUser(product: Product): Observable<Product>{
+  deleteProduct(product: Product) {
+    return this.httpClient.delete<Product>(this.url + '/' + product.id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  updateProduct(product: Product): Observable<Product>{
     return this.httpClient.put<Product>(this.url + '/' + product.id, JSON.stringify(product), this.httpOptions)
     .pipe(
       retry(1),

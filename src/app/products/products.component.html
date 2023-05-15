@@ -15,8 +15,8 @@
             <p>{{product.description}}</p>
           </div>
           <div class="card-action">
-            <button class="waves-effect waves-teal btn" (click)="Openpopup()">EDITAR</button>
-            <button class="waves-effect waves-teal btn red">EXCLUIR</button>
+            <button class="waves-effect waves-teal btn" (click)="editProduct(product)">EDITAR</button>
+            <button class="waves-effect waves-teal btn red" (click)="onRemove(product)">EXCLUIR</button>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
     </div>
   
   <div class="card add-product">
-    <h5 class="card-header">Adicionar/Atualizar produtos</h5>
+    <h2 class="card-header">Adicionar produtos</h2>
     <div class="card-body">
         <form id="add-form" (ngSubmit)="f.form.valid && saveProduct(f)" #f="ngForm" novalidate>
           <div class="form-group">
