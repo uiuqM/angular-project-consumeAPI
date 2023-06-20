@@ -10,13 +10,15 @@ import { UserComponent } from './users/users.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './popup/popup.component';
-
+import { DescriptionComponent } from './description/description.component';
+import { CarouselModule } from '@coreui/angular';
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     UserComponent,
-    PopupComponent
+    PopupComponent,
+    DescriptionComponent
   ],
   imports: [
     HttpClientModule,
@@ -24,7 +26,8 @@ import { PopupComponent } from './popup/popup.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
