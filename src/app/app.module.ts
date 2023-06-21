@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './popup/popup.component';
 import { DescriptionComponent } from './description/description.component';
 import { CarouselModule } from '@coreui/angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,4 +33,5 @@ import { CarouselModule } from '@coreui/angular';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

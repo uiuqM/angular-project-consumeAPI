@@ -37,7 +37,4 @@ export class DescriptionComponent implements OnInit{
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     }
   }
-  onItemChange($event: any): void {
-    console.log('Carousel onItemChange', $event);
-  }
 }
